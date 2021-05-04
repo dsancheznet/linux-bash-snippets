@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+echo "   ___       __   __       __  ___     __   ___         __   ___ "
+echo "  |__  |\ | /  ` |__) \ / |__)  |     |  \ |__  \  / | /  ` |__  " 
+echo "  |___ | \| \__, |  \  |  |     |     |__/ |___  \/  | \__, |___ "
+echo                                                                  
+echo "Setting up $1"
+cryptsetup -y -v --type luks2 luksFormat $1
+echo "Initializing volume as $2"
+cryptsetup luksOpen $1 $2
+echo "Read status from mapper"
+cryptsetup -v status $2
+echo "Fill device with zeros (a disk full error will appear, this is normal)"
+pv -tpreb /dev/zero | dd of=/dev/mapper/$2 bs=128M
+echo "Formatting disk as mk4"
+mkfs.ext4 /dev/mapper/$2
