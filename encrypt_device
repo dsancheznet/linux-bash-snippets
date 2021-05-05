@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script needs to parameters:
+#1: The device to be encrupted i.e. /dev/sdX
+#2: The name to me mapped to e.g. Stick
 
 echo "   ___       __   __       __  ___     __   ___         __   ___ "
 echo "  |__  |\ | /  ` |__) \ / |__)  |     |  \ |__  \  / | /  ` |__  " 
@@ -13,5 +16,5 @@ echo "Read status from mapper"
 cryptsetup -v status $2
 echo "Fill device with zeros (a disk full error will appear, this is normal)"
 pv -tpreb /dev/zero | dd of=/dev/mapper/$2 bs=128M
-echo "Formatting disk as mk4"
+echo "Formatting disk as ext4"
 mkfs.ext4 /dev/mapper/$2
