@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script needs to parameters:
-#1: The device to be encrupted i.e. /dev/sdX
+#1: The device to be encrypted i.e. /dev/sdX
 #2: The name to me mapped to e.g. Stick
 
 echo "   ___       __   __       __  ___     __   ___         __   ___ "
